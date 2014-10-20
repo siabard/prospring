@@ -1,0 +1,5 @@
+<factorypath>
+    <factorypathentry kind="PLUGIN" id="org.eclipse.jst.ws.annotations.core" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="WKSPJAR" id="/prospring-ch10/metamodel-generator-lib/hibernate-jpa-2.1-api-1.0.0.Final.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="WKSPJAR" id="/prospring-ch10/metamodel-generator-lib/hibernate-jpamodelgen-4.3.6.Final.jar" enabled="true" runInBatchMode="false"/>
+</factorypath>
