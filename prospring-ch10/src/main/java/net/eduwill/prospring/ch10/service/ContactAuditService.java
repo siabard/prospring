@@ -12,5 +12,6 @@ public interface ContactAuditService {
 	
 	public ContactAudit save(ContactAudit contact);
 	
+	public ContactAudit findAuditbyrevision(Long id, int revision);
 	
 }

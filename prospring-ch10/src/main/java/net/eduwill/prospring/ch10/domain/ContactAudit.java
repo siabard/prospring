@@ -2,21 +2,31 @@ package net.eduwill.prospring.ch10.domain;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.persistence.Version;
 
 import org.hibernate.annotations.Type;
+import org.hibernate.envers.Audited;
+import org.hibernate.envers.NotAudited;
 import org.joda.time.DateTime;
 import org.springframework.data.domain.Auditable;
 
 @Entity
+@Audited
 @Table(name="contact_audit")
 public class ContactAudit implements Auditable<String, Long>, Serializable{
 	
@@ -29,6 +39,8 @@ public class ContactAudit implements Auditable<String, Long>, Serializable{
 	private DateTime createdDate;
 	private String lastModifiedBy;
 	private DateTime lastModifiedDate;
+	private Set<Hobby> hobbies  = new HashSet<Hobby>();
+	private Set<ContactTelDetail> contactTelDetails  = new HashSet<ContactTelDetail>();
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -116,6 +128,29 @@ public class ContactAudit implements Auditable<String, Long>, Serializable{
 		}
 		
 	}
+
+	@ManyToMany
+	@NotAudited
+	@JoinTable(name = "contact_hobby_detail", joinColumns = @JoinColumn(name = "CONTACT_ID"), inverseJoinColumns = @JoinColumn(name = "HOBBY_ID"))
+	public Set<Hobby> getHobbies() {
+		return this.hobbies;
+	}
+	
+	public void setHobbies(Set<Hobby> hobbies) {
+		this.hobbies = hobbies;
+	}
+	
+	@OneToMany(mappedBy="contact", cascade=CascadeType.ALL, orphanRemoval=true)
+	@NotAudited
+	public Set<ContactTelDetail> getContactTelDetails() {
+		return this.contactTelDetails;
+	}
+	
+	public void setContactTelDetails(Set<ContactTelDetail> contactTelDetails) {
+		
+		this.contactTelDetails = contactTelDetails;
+	}
+	
 	
 	public String toString() {
 		return "Contact - Id : " + id
