@@ -12,6 +12,7 @@
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<import resource="classpath:datasource-tx-jpa.xml" />
 
+	<import resource="web-security.xml" />
 	<context:annotation-config />
 	<context:component-scan base-package="net.eduwill.prospring.ch16.service.jpa"></context:component-scan>
 

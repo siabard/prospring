@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Version;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
@@ -39,6 +41,8 @@ public class Contact implements Serializable {
 		this.id = id;
 	}
 
+	@NotNull
+	@Size(min=3, max=60)
 	@Column(name="FIRST_NAME")
 	public String getFirstName() {
 		return firstName;

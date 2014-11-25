@@ -3,11 +3,11 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="
 		http://www.springframework.org/schema/beans
-		http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
 	">
 
 	<bean id="restTemplate" class="org.springframework.web.client.RestTemplate">
-
+		<constructor-arg ref="httpRequestFactory"></constructor-arg>
 		<property name="messageConverters">
 			<list>
 				<bean
@@ -30,4 +30,22 @@
 	<bean id="castorMarshaller" class="org.springframework.oxm.castor.CastorMarshaller">
 		<property name="mappingLocation" value="classpath:oxm-mapping.xml" />
 	</bean>
+	
+	<bean id="httpRequestFactory" class="org.springframework.http.client.HttpComponentsClientHttpRequestFactory">
+		<constructor-arg>
+			<bean class="org.apache.http.impl.client.DefaultHttpClient">
+				<property name="credentialsProvider">
+					<bean class="net.eduwill.prospring.ch16.restful.support.CustomCredentialsProvider">
+						<property name="credentials">
+							<bean class="org.apache.http.auth.UsernamePasswordCredentials">
+								<constructor-arg name="userName" value="remote"></constructor-arg>
+								<constructor-arg name="password" value="remote"></constructor-arg>
+							</bean>
+						</property>
+					</bean>
+				</property>
+			</bean>
+		</constructor-arg>
+	</bean>
+	
 </beans>
