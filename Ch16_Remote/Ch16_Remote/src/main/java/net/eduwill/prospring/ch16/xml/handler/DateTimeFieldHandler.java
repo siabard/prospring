@@ -8,8 +8,6 @@ import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
-import com.bea.xml.stream.samples.Parse;
-
 public class DateTimeFieldHandler extends GeneralizedFieldHandler {
 
 	private static String dateFormatPattern;

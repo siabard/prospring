@@ -12,7 +12,7 @@
 	
 	<!-- Application Loggers -->
 	<logger name="net.eduwill.prospring">
-		<level value="info" />
+		<level value="WARN" />
 	</logger>
 	
 	<!-- 3rdparty Loggers -->

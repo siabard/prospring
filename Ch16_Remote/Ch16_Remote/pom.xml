@@ -317,7 +317,8 @@
 				<artifactId>exec-maven-plugin</artifactId>
 				<version>1.2.1</version>
 				<configuration>
-					<mainClass>net.eduwill.prospring.ch16.jms.JmsListenerSample</mainClass>
+					<!-- <mainClass>net.eduwill.prospring.ch16.jms.JmsListenerSample</mainClass> -->
+					<mainClass>net.eduwill.prospring.ch16.restful.RestTemplateSample</mainClass>
 				</configuration>
 			</plugin>
 		</plugins>

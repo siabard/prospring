@@ -16,8 +16,9 @@
 			http://www.springframework.org/schema/data/jpa/spring-jpa-1.0.xsd
 		">
 
-	<context:annotation-config />
-	<context:component-scan base-package="net.eduwill.prospring"></context:component-scan>
+
+	<!-- <context:annotation-config /> -->	
+
 
 
 	<!-- <context:annotation-config></context:annotation-config> -->
@@ -51,6 +52,7 @@
 		</property>
 	</bean>
 
+	<context:annotation-config /> 
 
 	<jpa:repositories base-package="net.eduwill.prospring.ch16.repository"
 		entity-manager-factory-ref="emf" transaction-manager-ref="transactionManager">
