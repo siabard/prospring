@@ -1,7 +1,6 @@
 package net.eduwill.prospring.ch17.domain;
 
 import java.io.Serializable;
-import java.util.Arrays;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -17,16 +16,12 @@ import javax.persistence.Version;
 
 import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 @Entity
 @Table(name="contact")
 public class Contact implements Serializable {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 8130549790274575962L;
-	
 	
 	
 	@Override
@@ -73,6 +68,7 @@ public class Contact implements Serializable {
 	
 	@Column(name="BIRTH_DATE")
 	@Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+	@DateTimeFormat(iso=ISO.DATE)
 	public DateTime getBirthDate() {
 		return birthDate;
 	}
@@ -108,9 +104,7 @@ public class Contact implements Serializable {
 	public void setPhoto(byte[] photo) {
 		this.photo = photo;
 	}
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
+	
 	private Long id;
 	private int version;
 	private String firstName;

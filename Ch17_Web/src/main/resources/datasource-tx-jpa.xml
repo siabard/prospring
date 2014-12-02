@@ -9,7 +9,7 @@
 		http://www.springframework.org/schema/context
 		http://www.springframework.org/schema/context/spring-context-3.2.xsd
 		http://www.springframework.org/schema/jdbc
-		http://www.springframework.org/schema/jdbc/spring-jdbc-3.2.xsd
+		http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
 		http://www.springframework.org/schema/data/jpa
 		http://www.springframework.org/schema/data/jpa/spring-jpa-1.0.xsd
 		http://www.springframework.org/schema/tx
@@ -25,14 +25,15 @@
 	</bean>
 
 	<tx:annotation-driven transaction-manager="transactionManager" />
-
+	<context:annotation-config></context:annotation-config>
+	
 	<bean id="emf"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="dataSource" ref="dataSource"></property>
 		<property name="jpaVendorAdapter">
 			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
 		</property>
-		<property name="packagesToScan" value="net.edwuill.prospring.ch17.domain" />
+		<property name="packagesToScan" value="net.eduwill.prospring.ch17.domain" />
 		<property name="jpaProperties">
 			<props>
 				<prop key="hibernate.dialect">org.hibernate.dialect.H2Dialect</prop>
@@ -45,7 +46,7 @@
 		</property>
 	</bean>
 
-	<context:annotation-config></context:annotation-config>
+
 
 	<jpa:repositories base-package="net.eduwill.prospring.ch17.repository"
 		entity-manager-factory-ref="emf" transaction-manager-ref="transactionManager"></jpa:repositories>
