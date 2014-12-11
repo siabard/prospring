@@ -5,4 +5,10 @@
 	<definition extends="default" name="contacts/list">
 		<put-attribute name="body" value="/WEB-INF/views/contacts/list.jspx"></put-attribute>
 	</definition>
+
+	<definition extends="default" name="contacts/view">
+		<put-attribute name="body" value="/WEB-INF/views/contacts/view.jspx"></put-attribute>
+	</definition>
+
+
 </tiles-definitions>
