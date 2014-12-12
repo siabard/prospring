@@ -8,7 +8,12 @@ http://www.springframework.org/schema/beans
 http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
 http://www.springframework.org/schema/context
 http://www.springframework.org/schema/context/spring-context-3.2.xsd">
-	<annotation-driven />
+	<annotation-driven validator="validator" />
+
+	<beans:bean id="validator"
+		class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+		<beans:property name="validationMessageSource" ref="messageSource"></beans:property>
+	</beans:bean>
 
 	<resources location="/, classpath:META-INF/web-resources/"
 		mapping="/resources/**/" />
@@ -16,15 +21,11 @@ http://www.springframework.org/schema/context/spring-context-3.2.xsd">
 	<default-servlet-handler />
 
 	<!-- <resources mapping="/resources/**" location="/resources/" /> -->
-	
-	<!-- 
-	<beans:bean
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<beans:property name="prefix" value="/WEB-INF/views/" />
-		<beans:property name="suffix" value=".jspx" />
-	</beans:bean>
-	 -->
-	 
+
+	<!-- <beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"> 
+		<beans:property name="prefix" value="/WEB-INF/views/" /> <beans:property 
+		name="suffix" value=".jspx" /> </beans:bean> -->
+
 	<context:component-scan base-package="net.eduwill.prospring.ch17.web.controller" />
 
 	<interceptors>
@@ -44,6 +45,7 @@ http://www.springframework.org/schema/context/spring-context-3.2.xsd">
 	<beans:bean class="org.springframework.web.servlet.i18n.CookieLocaleResolver"
 		id="localeResolver" p:cookieName="locale"></beans:bean>
 
+	<!-- ResourceBundleThemeSource 의 설정파일을 놓을 장소중 하나는 WEB-INF/classes-->
 	<beans:bean
 		class="org.springframework.ui.context.support.ResourceBundleThemeSource"
 		id="themeSource" />

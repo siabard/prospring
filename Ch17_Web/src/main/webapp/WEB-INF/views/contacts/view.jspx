@@ -51,7 +51,7 @@
 
 		</table>
 
-		<a href="${editContactUrl}/${contact.id}?form">${labelContactupdate}</a>
+		<a href="${editContactUrl}/${contact.id}?form">${labelContactUpdate}</a>
 	</div>
 
 </div>
