@@ -11,8 +11,8 @@
 	</context-param>
 
 	<!-- Spring MVC Filters -->
-	
-	<!--  -->
+
+	<!-- -->
 	<filter>
 		<filter-name>CharacterEncodingFilter</filter-name>
 		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -34,8 +34,7 @@
 	<filter>
 		<filter-name>Spring OpenEntityManagerInViewFilter</filter-name>
 		<filter-class>
-			org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter
-		</filter-class>
+			org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter</filter-class>
 	</filter>
 
 	<filter-mapping>
@@ -58,6 +57,17 @@
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 
+
+	<!-- Spring security -->
+	<filter>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
 	<!-- Processes application requests -->
 
 	<servlet>
