@@ -43,7 +43,7 @@
 	<div id="contactUpdate">
 
 		<form:form modelAttribute="contact" id="contactUpdateForm"
-			method="post">
+			method="post" enctype="multipart/form-data">
 			<c:if test="${not empty message}">
 				<div id="message" class="${message.type}">${message.message}</div>
 			</c:if>
@@ -78,11 +78,16 @@
 			<form:label path="description">
 			${labelContactDescription}
 		</form:label>
+
 			<form:textarea cols="60" rows="8" path="description"
 				id="contactDescription" />
 			<div>
 				<form:errors path="description" cssClass="error" />
 			</div>
+			<p />
+
+			<label for="file"> ${labelContactphoto} </label>
+			<input name="file" type="file" />
 			<p />
 
 			<form:hidden path="version" />

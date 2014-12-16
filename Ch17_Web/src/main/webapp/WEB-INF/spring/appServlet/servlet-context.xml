@@ -20,6 +20,8 @@ http://www.springframework.org/schema/context/spring-context-3.2.xsd">
 
 	<default-servlet-handler />
 
+	<beans:bean class="org.springframework.web.multipart.support.StandardServletMultipartResolver" id="multipartResolver" />
+	
 	<!-- <resources mapping="/resources/**" location="/resources/" /> -->
 
 	<!-- <beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"> 

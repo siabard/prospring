@@ -14,10 +14,59 @@
 		var="labelContactLastName" />
 	<spring:message code="label_contact_birth_date"
 		var="labelContactBirthDate" />
-
+	<spring:url value="/contacts/" var="showContactUrl" />
+	<script type="text/javascript">
+		$(function() {
+			$("#list").jqGrid({
+				url:'${showContactUrl}/listgrid',
+				datatype: 'json',
+				mtype: 'GET',
+				colNames: ['${labelContactFirstName}', '${labelContactLastName}', '${labelContactBirthDate}'],
+				colModel: [
+				           {name: 'firstName', index: 'firstName', width: 150},
+				           {name: 'lastName', index: 'lastName', width: 100},
+				           {name: 'birthDateString', index: 'birthDate', width: 100}
+				           ],
+				jsonReader: {
+					root: "contactData",
+					page: "currentPage",
+					total: "totalPages",
+					records: "totalRecords",
+					repeatitems: false,
+					id: "id"
+				},
+				
+				pager: '#pager',
+				rowNum: 10,
+				rowList: [10, 20, 30],
+				sortname: 'firstName',
+				sortorder: 'asc',
+				viewrecords: true,
+				gridview: true,
+				height: 250,
+				width: 500,
+				caption: '${labelContactList}',
+				onSelectRow: function(id) {
+					document.location.href="${showContactUrl}/" + id;
+				}
+				
+			});
+		});
+	</script>
 	<spring:url value="/contacts" var="showContactUrl" />
+	
+	<c:if test="${not empty message}">
+		<div id="message" class="${message.type}">${message.message}</div>
+	</c:if>
+	
 	<h1>${labelContactList}</h1>
 
+	<div>
+		<table id="list"><tr><td/></tr></table>
+	</div>
+	<div id="pager"></div>
+
+	<!-- 
 	<c:if test="${not empty contacts}">
 		<table>
 			<thead>
@@ -43,7 +92,7 @@
 		</table>
 
 	</c:if>
-
+	 -->
 
 
 </div>
